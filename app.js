@@ -58,11 +58,16 @@ app.use("/product", (req, res, next) => {
   next();
 });
 
-app.use("/", (req, res) => {
-  res.send("Successful!");
-});
+// app.use("/", (req, res) => {
+//   res.send("Successful!");
+// });
 
-app.listen(3000);
+const studyRoutes = require("./routes/routingStudy");
+const htmlAdd = require("./routes/htmlAdd");
 
-// git config --global user.email "you@example.com"
-//   git config --global user.name "Your Name"
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(studyRoutes);
+app.use("/admin", htmlAdd);
+
+app.listen(3001);
