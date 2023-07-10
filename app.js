@@ -58,16 +58,24 @@ app.use("/product", (req, res, next) => {
   next();
 });
 
-// app.use("/", (req, res) => {
-//   res.send("Successful!");
+// app.use("/", (req, res, next) => {
+//   res.send("<html><h1>home page</h1></html>");
+//   next();
 // });
 
 const studyRoutes = require("./routes/routingStudy");
 const htmlAdd = require("./routes/htmlAdd");
+const shopRoutes = require("./routes/shop");
+const tokenStudy = require("./routes/token");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(studyRoutes);
+app.use("/", studyRoutes);
 app.use("/admin", htmlAdd);
+app.use("/shop", shopRoutes);
+app.use("/", tokenStudy);
+
+app.set("view engine", "pug");
+app.set("views", "views");
 
 app.listen(3001);
