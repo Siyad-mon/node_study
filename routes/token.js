@@ -18,7 +18,8 @@ const validation = (req, res, next) => {
   next();
 };
 
-router.get("/token", tokenFun, validation, (req, res, next) => {
+const middleware = [tokenFun, validation];
+router.get("/token", middleware, (req, res, next) => {
   console.log("user logged");
   res.send("<h1>Success!</h1>");
 });
