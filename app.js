@@ -10,8 +10,12 @@ app.use("/product-test", (req, res, next) => {
   );
 });
 
+let body = [];
+
 app.use("/product", (req, res, next) => {
-  console.log(req.body);
+  // console.log(req.body);
+  res.send(req.body.title);
+  body.push(req.body.title);
   next();
 });
 
@@ -34,6 +38,7 @@ app.use("/shop", shopRoutes);
 app.use("/", tokenStudy);
 app.use("/", bookRoutes);
 app.use("/", dbtest);
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
